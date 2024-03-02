@@ -137,3 +137,27 @@ impl<W: Write> U128Write for W {
         Ok(())
     }
 }
+
+pub trait F32Read {
+    fn read_f32(&mut self) -> Result<f32>;
+}
+
+pub trait F32Write {
+    fn write_f32(&mut self, value: f32) -> Result<()>;
+}
+
+ impl <R: Read> F32Read for R {
+    fn read_f32(&mut self) -> Result<f32> {
+        let mut buf = [0; 4];
+        self.read_exact(&mut buf)?;
+        Ok(f32::from_be_bytes(buf))
+    }
+}
+
+impl<W: Write> F32Write for W {
+    fn write_f32(&mut self, value: f32) -> Result<()> {
+        self.write_all(&value.to_be_bytes())?;
+        Ok(())
+    }
+}
+
