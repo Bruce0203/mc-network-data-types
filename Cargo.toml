@@ -1,10 +1,10 @@
 [package]
-name = "mcio"
+name = "mc-network-data-types"
 version = "0.1.0"
 edition = "2021"
 author = "Bruce0203 <brucefreedy@gmail.com>"
-description = "Minecraft network or file I/O data types"
-repository = "https://github.com/Bruce0203/mcio"
+description = "Minecraft network I/O data types"
+repository = "https://github.com/Bruce0203/mc-network-data-types"
 license = "MIT"
 readme = "README.md"
 include = [
