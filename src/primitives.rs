@@ -92,6 +92,29 @@ impl<W: Write> U16Write for W {
     }
 }
 
+pub trait I16Read {
+    fn read_i16(&mut self) -> Result<i16>;
+}
+
+pub trait I16Write {
+    fn write_i16(&mut self, value: i16) -> Result<()>;
+}
+
+impl<R: Read> I16Read for R {
+    fn read_i16(&mut self) -> Result<i16> {
+        let mut buf = [0; 2];
+        self.read_exact(&mut buf)?;
+        Ok(i16::from_be_bytes(buf))
+    }
+}
+
+impl<W: Write> I16Write for W {
+    fn write_i16(&mut self, value: i16) -> Result<()> {
+        self.write_all(&value.to_be_bytes())?;
+        Ok(())
+    }
+}
+
 pub trait I64Read {
     fn read_i64(&mut self) -> Result<i64>;
 }
