@@ -1,6 +1,6 @@
 [package]
 name = "mc_io"
-version = "0.1.9"
+version = "0.1.10"
 edition = "2021"
 author = "Bruce0203 <brucefreedy@gmail.com>"
 description = "Minecraft I/O layer"

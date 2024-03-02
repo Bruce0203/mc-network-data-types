@@ -1,5 +1,17 @@
 use std::io::{Error, ErrorKind, Result};
 
+pub fn read_var_i32_fast(buf: &[u8]) -> Result<(i32, usize)> {
+    let mut val = 0;
+    for i in 0..5 {
+        let byte = buf[i];
+        val |= (byte as i32 & 0b01111111) << (i * 7);
+        if byte & 0b10000000 == 0 {
+            return Ok((val, i + 1));
+        }
+    }
+    Err(Error::new(ErrorKind::InvalidInput, "VarInt is too large"))
+}
+
 pub trait VarIntRead {
     fn read_var_i32(&mut self) -> Result<i32>;
     fn read_var_i64(&mut self) -> Result<i64>;
