@@ -3,7 +3,10 @@ use std::io::{
     Result,
 };
 
-use super::{encoding::{Decoder, Encoder}, var_string::{VarStringRead, VarStringWrite}};
+use super::{
+    encoding::{Decoder, Encoder},
+    var_string::{VarStringRead, VarStringWrite},
+};
 
 #[derive(derive_more::Deref)]
 pub struct Identifier(String);

@@ -23,29 +23,6 @@ impl<W: Write> WriteBool for W {
     }
 }
 
-pub trait I64Read {
-    fn read_i64(&mut self) -> Result<i64>;
-}
-
-pub trait I64Write {
-    fn write_i64(&mut self, value: i64) -> Result<()>;
-}
-
-impl<R: Read> I64Read for R {
-    fn read_i64(&mut self) -> Result<i64> {
-        let mut buf = [0; 8];
-        self.read_exact(&mut buf)?;
-        Ok(i64::from_be_bytes(buf))
-    }
-}
-
-impl<W: Write> I64Write for W {
-    fn write_i64(&mut self, value: i64) -> Result<()> {
-        self.write_all(&value.to_be_bytes())?;
-        Ok(())
-    }
-}
-
 pub trait U8Read {
     fn read_u8(&mut self) -> Result<u8>;
 }
@@ -59,6 +36,29 @@ impl<R: Read> U8Read for R {
         let mut buf = [0u8];
         self.read_exact(&mut buf)?;
         Ok(buf[0])
+    }
+}
+
+pub trait I8Read {
+    fn read_i8(&mut self) -> Result<i8>;
+}
+
+impl<R: Read> I8Read for R {
+    fn read_i8(&mut self) -> Result<i8> {
+        let mut buf = [0];
+        self.read_exact(&mut buf)?;
+        Ok(buf[0] as i8)
+    }
+}
+
+pub trait I8Write {
+    fn write_i8(&mut self, value: i8) -> Result<()>;
+}
+
+impl<W: Write> I8Write for W {
+    fn write_i8(&mut self, value: i8) -> Result<()> {
+        self.write_all(&[value as u8])?;
+        Ok(())
     }
 }
 
@@ -92,6 +92,29 @@ impl<W: Write> U16Write for W {
     }
 }
 
+pub trait I64Read {
+    fn read_i64(&mut self) -> Result<i64>;
+}
+
+pub trait I64Write {
+    fn write_i64(&mut self, value: i64) -> Result<()>;
+}
+
+impl<R: Read> I64Read for R {
+    fn read_i64(&mut self) -> Result<i64> {
+        let mut buf = [0; 8];
+        self.read_exact(&mut buf)?;
+        Ok(i64::from_be_bytes(buf))
+    }
+}
+
+impl<W: Write> I64Write for W {
+    fn write_i64(&mut self, value: i64) -> Result<()> {
+        self.write_all(&value.to_be_bytes())?;
+        Ok(())
+    }
+}
+
 pub trait U128Read {
     fn read_u128(&mut self) -> Result<u128>;
 }
@@ -111,29 +134,6 @@ impl<R: Read> U128Read for R {
 impl<W: Write> U128Write for W {
     fn write_u128(&mut self, value: u128) -> Result<()> {
         self.write_all(&value.to_be_bytes())?;
-        Ok(())
-    }
-}
-
-pub trait I8Read {
-    fn read_i8(&mut self) -> Result<i8>;
-}
-
-impl<R: Read> I8Read for R {
-    fn read_i8(&mut self) -> Result<i8> {
-        let mut buf = [0];
-        self.read_exact(&mut buf)?;
-        Ok(buf[0] as i8)
-    }
-}
-
-pub trait I8Write {
-    fn write_i8(&mut self, value: i8) -> Result<()>;
-}
-
-impl<W: Write> I8Write for W {
-    fn write_i8(&mut self, value: i8) -> Result<()> {
-        self.write_all(&[value as u8])?;
         Ok(())
     }
 }

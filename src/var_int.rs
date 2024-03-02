@@ -18,7 +18,7 @@ where
         let mut val = 0;
         let buf = &mut [0u8];
         for i in 0..5 {
-            self.read_exact(buf);
+            self.read_exact(buf)?;
             let byte = buf[0];
             val |= (byte as i32 & 0b01111111) << (i * 7);
             if byte & 0b10000000 == 0 {
@@ -46,8 +46,8 @@ impl<W> VarIntWrite for W
 where
     W: std::io::Write,
 {
-    fn write_var_i32(&mut self, mut value: i32) -> Result<usize> {
-        let mut x = value as u64;
+    fn write_var_i32(&mut self, value: i32) -> Result<usize> {
+        let x = value as u64;
         let stage1 = (x & 0x000000000000007f)
             | ((x & 0x0000000000003f80) << 1)
             | ((x & 0x00000000001fc000) << 2)
