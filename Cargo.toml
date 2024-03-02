@@ -7,7 +7,6 @@ description = "Minecraft network or file I/O data types"
 repository = "https://github.com/Bruce0203/mcio"
 license = "MIT"
 readme = "README.md"
-edition = "2021"
 include = [
     "**/*.rs",
     "Cargo.toml",
