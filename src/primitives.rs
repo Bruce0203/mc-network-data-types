@@ -161,3 +161,26 @@ impl<W: Write> F32Write for W {
     }
 }
 
+
+pub trait F64Read {
+    fn read_f64(&mut self) -> Result<f64>;
+}
+
+pub trait F64Write {
+    fn write_f64(&mut self, value: f64) -> Result<()>;
+}
+
+impl<R: Read> F64Read for R {
+    fn read_f64(&mut self) -> Result<f64> {
+        let mut buf = [0; 8];
+        self.read_exact(&mut buf)?;
+        Ok(f64::from_be_bytes(buf))
+    }
+}
+
+impl<W: Write> F64Write for W {
+    fn write_f64(&mut self, value: f64) -> Result<()> {
+        self.write_all(&value.to_be_bytes())?;
+        Ok(())
+    }
+}
