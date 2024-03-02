@@ -1,5 +1,5 @@
-# mc network data types
+# mc network I/O
 
-Minecraft network I/O data types
+Minecraft network I/O layer
 
-[![Crates.io](https://img.shields.io/crates/v/mc-network-data-types.svg)](https://crates.io/crates/mc-network-data-types)
+[![Crates.io](https://img.shields.io/crates/v/mc-network-io.svg)](https://crates.io/crates/mc-network-io)
