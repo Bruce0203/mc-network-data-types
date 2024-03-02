@@ -1,0 +1,18 @@
+[package]
+name = "mcio"
+version = "0.1.0"
+edition = "2021"
+author = "Bruce0203 <brucefreedy@gmail.com>"
+description = "Minecraft network or file I/O data types"
+repository = "https://github.com/Bruce0203/mcio"
+license = "MIT"
+readme = "README.md"
+edition = "2021"
+include = [
+    "**/*.rs",
+    "Cargo.toml",
+]
+
+[dependencies]
+derive_more = "0.99.17"
+
