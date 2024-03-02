@@ -1,5 +1,5 @@
-# mc network I/O
+# mc I/O
 
-Minecraft network I/O layer
+Minecraft I/O layer
 
-[![Crates.io](https://img.shields.io/crates/v/mc-network-io.svg)](https://crates.io/crates/mc-network-io)
+[![Crates.io](https://img.shields.io/crates/v/mc_io.svg)](https://crates.io/crates/mc_io)
