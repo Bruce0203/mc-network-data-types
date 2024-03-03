@@ -1,6 +1,6 @@
 [package]
 name = "mc_io"
-version = "0.1.11"
+version = "0.1.12"
 edition = "2021"
 author = "Bruce0203 <brucefreedy@gmail.com>"
 description = "Minecraft I/O layer"
@@ -14,4 +14,6 @@ include = [
 
 [dependencies]
 derive_more = "0.99.17"
+hematite-nbt = "0.5.2"
+serde = "1.0.197"
 
