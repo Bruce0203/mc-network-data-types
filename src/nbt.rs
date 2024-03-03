@@ -9,7 +9,7 @@ pub trait NbtNetworkWrite {
 impl<W: std::io::Write> NbtNetworkWrite for W {
     fn write_network_nbt<S: Serialize>(&mut self, value: &S) -> std::io::Result<()> {
         let mut buf = Cursor::new(Vec::new());
-        nbt::to_writer(&mut buf, value, None)?;
+        nbt::to_writer(&mut buf, value, Some(""))?;
         self.write_all(&[10])?;
         self.write_all(&buf.get_ref()[3..])?;
         Ok(())
